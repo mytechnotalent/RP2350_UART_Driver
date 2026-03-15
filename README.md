@@ -22,7 +22,7 @@ Official Raspberry Pi guidance for RP2350 ARM recommends the Arm GNU Toolchain f
 $url = "https://developer.arm.com/-/media/Files/downloads/gnu/15.2.rel1/binrel/arm-gnu-toolchain-15.2.rel1-mingw-w64-x86_64-arm-none-eabi.zip"
 $zipPath = "$env:TEMP\arm-toolchain-15-x64-win.zip"
 $extractPath = "$env:TEMP\arm-extract"
-$dest = "C:\Users\assem.KEVINTHOMAS\OneDrive\Documents\arm-toolchain-15"
+$dest = "$HOME\arm-toolchain-15"
 
 Invoke-WebRequest -Uri $url -OutFile $zipPath
 Expand-Archive -LiteralPath $zipPath -DestinationPath $extractPath -Force
@@ -32,7 +32,7 @@ Get-ChildItem -Path $dest | Select-Object Name
 
 ## Add Toolchain To User PATH (PowerShell)
 ```powershell
-$toolBin = "C:\Users\assem.KEVINTHOMAS\OneDrive\Documents\arm-toolchain-15\bin"
+$toolBin = "$HOME\arm-toolchain-15\bin"
 $currentUserPath = [Environment]::GetEnvironmentVariable("Path", "User")
 if ($currentUserPath -notlike "*$toolBin*") {
   [Environment]::SetEnvironmentVariable("Path", "$currentUserPath;$toolBin", "User")
