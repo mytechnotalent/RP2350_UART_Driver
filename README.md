@@ -6,13 +6,65 @@
 <br>
 
 # RP2350 UART Driver
-An RP2350 UART driver written entirely in Assembler.
+An RP2350 UART driver written entirely in ARM Assembler.
 
 <br>
 
-# Install ARM Toolchain
-## NOTE: Be SURE to select `Add path to environment variable` on setup.
-[HERE](https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads)
+# Install ARM Toolchain (Windows / RP2350 Cortex-M33)
+Official Raspberry Pi guidance for RP2350 ARM recommends the Arm GNU Toolchain from developer.arm.com.
+
+## Official References
+- Raspberry Pi Pico SDK quick start: [HERE](https://github.com/raspberrypi/pico-sdk#quick-start-your-own-project)
+- Tool downloads (official): [HERE](https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads)
+
+## Install (PowerShell)
+```powershell
+$url = "https://developer.arm.com/-/media/Files/downloads/gnu/15.2.rel1/binrel/arm-gnu-toolchain-15.2.rel1-mingw-w64-x86_64-arm-none-eabi.zip"
+$zipPath = "$env:TEMP\arm-toolchain-15-x64-win.zip"
+$extractPath = "$env:TEMP\arm-extract"
+$dest = "C:\Users\assem.KEVINTHOMAS\OneDrive\Documents\arm-toolchain-15"
+
+Invoke-WebRequest -Uri $url -OutFile $zipPath
+Expand-Archive -LiteralPath $zipPath -DestinationPath $extractPath -Force
+Move-Item "$extractPath\arm-gnu-toolchain-*" $dest -Force
+Get-ChildItem -Path $dest | Select-Object Name
+```
+
+## Add Toolchain To User PATH (PowerShell)
+```powershell
+$toolBin = "C:\Users\assem.KEVINTHOMAS\OneDrive\Documents\arm-toolchain-15\bin"
+$currentUserPath = [Environment]::GetEnvironmentVariable("Path", "User")
+if ($currentUserPath -notlike "*$toolBin*") {
+  [Environment]::SetEnvironmentVariable("Path", "$currentUserPath;$toolBin", "User")
+}
+```
+
+Close and reopen your terminal after updating PATH.
+
+## Verify Toolchain
+```powershell
+arm-none-eabi-as --version
+arm-none-eabi-ld --version
+arm-none-eabi-objcopy --version
+```
+
+## Build This Project
+```powershell
+.\build.bat
+```
+
+## UART Terminal Setup (PuTTY)
+- Speed: 115200
+- Data bits: 8
+- Stop bits: 1
+- Parity: None
+- Flow control: None
+
+## UART Wiring (Pico 2 Target)
+- GP0 = UART0 TX (target output)
+- GP1 = UART0 RX (target input)
+- GND must be common between target and USB-UART adapter/debug probe
+- Cross wiring is required: adapter TX -> GP1, adapter RX -> GP0
 
 <br>
 
