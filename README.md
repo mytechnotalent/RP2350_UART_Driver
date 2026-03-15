@@ -1,6 +1,6 @@
 <img src="https://github.com/mytechnotalent/RP2350_UART_Driver/blob/main/RP2350_UART_Driver.png?raw=true">
 
-## FREE Reverse Engineering Self-Study Course [HERE](https://github.com/mytechnotalent/Reverse-Engineering-Tutorial)
+## FREE Embedded Hacking Course [HERE](https://github.com/mytechnotalent/Embedded-Hacking)
 ### VIDEO PROMO [HERE](https://www.youtube.com/watch?v=aD7X9sXirF8)
 
 <br>
