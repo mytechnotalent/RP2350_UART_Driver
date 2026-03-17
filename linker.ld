@@ -81,7 +81,7 @@ SECTIONS
   /**
    * Non-secure stack symbols.
    */
-  __StackTop   = ORIGIN(RAM) + LENGTH(RAM); /* 0x20080000 */
+  __StackTop   = ORIGIN(RAM) + LENGTH(RAM);      /* 0x20080000 */
   __StackLimit = __StackTop - __STACK_SIZE;
   __stack      = __StackTop;
 
